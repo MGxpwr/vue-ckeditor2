@@ -105,17 +105,17 @@ export default {
 
         // Ckeditor contentDom event
         this.instance.on('contentDom', evt => {
-          this.$emit('contentDom', evt);
+          this.$emit('content-dom', evt);
         });
 
         // Ckeditor dialog definition event
         CKEDITOR.on('dialogDefinition', evt => {
-          this.$emit('dialogDefinition', evt);
+          this.$emit('dialog-definition', evt);
         });
 
         // Ckeditor file upload request event
         this.instance.on('fileUploadRequest', evt => {
-          this.$emit('fileUploadRequest', evt);
+          this.$emit('file-upload-request', evt);
         });
 
         // Ckditor file upload response event
@@ -123,7 +123,7 @@ export default {
           setTimeout(() => {
             this.onChange();
           }, 0);
-          this.$emit('fileUploadResponse', evt);
+          this.$emit('file-upload-response', evt);
         });
 
         // Listen for instanceReady event
