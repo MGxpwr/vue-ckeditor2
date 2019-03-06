@@ -78,11 +78,23 @@ var script = {
     }
   },
   mounted: function mounted() {
-    this.create();
+    var _this = this;
+
+    var ckEditorScript = document.createElement('script');
+    ckEditorScript.setAttribute(
+      'src',
+      '//cdn.ckeditor.com/4.11.2/standard/ckeditor.js'
+    );
+
+    ckEditorScript.onload = function() {
+      _this.create();
+    };
+
+    document.head.appendChild(ckEditorScript);
   },
   methods: {
     create: function create() {
-      var _this = this;
+      var _this2 = this;
 
       if (typeof CKEDITOR === 'undefined') {
         console.log('CKEDITOR is missing (http://ckeditor.com/)');
@@ -95,7 +107,7 @@ var script = {
 
         this.instance.setData(this.value);
         this.instance.on('instanceReady', function() {
-          _this.instance.setData(_this.value);
+          _this2.instance.setData(_this2.value);
         }); // Ckeditor change event
 
         this.instance.on('change', this.onChange); // Ckeditor mode html or source
@@ -103,31 +115,31 @@ var script = {
         this.instance.on('mode', this.onMode); // Ckeditor blur event
 
         this.instance.on('blur', function(evt) {
-          _this.$emit('blur', evt);
+          _this2.$emit('blur', evt);
         }); // Ckeditor focus event
 
         this.instance.on('focus', function(evt) {
-          _this.$emit('focus', evt);
+          _this2.$emit('focus', evt);
         }); // Ckeditor contentDom event
 
         this.instance.on('contentDom', function(evt) {
-          _this.$emit('content-dom', evt);
+          _this2.$emit('content-dom', evt);
         }); // Ckeditor dialog definition event
 
         CKEDITOR.on('dialogDefinition', function(evt) {
-          _this.$emit('dialog-definition', evt);
+          _this2.$emit('dialog-definition', evt);
         }); // Ckeditor file upload request event
 
         this.instance.on('fileUploadRequest', function(evt) {
-          _this.$emit('file-upload-request', evt);
+          _this2.$emit('file-upload-request', evt);
         }); // Ckditor file upload response event
 
         this.instance.on('fileUploadResponse', function(evt) {
           setTimeout(function() {
-            _this.onChange();
+            _this2.onChange();
           }, 0);
 
-          _this.$emit('file-upload-response', evt);
+          _this2.$emit('file-upload-response', evt);
         }); // Listen for instanceReady event
 
         if (typeof this.instanceReadyCallback !== 'undefined') {
@@ -135,7 +147,7 @@ var script = {
         } // Registering the beforeDestroyed hook right after creating the instance
 
         this.$once('hook:beforeDestroy', function() {
-          _this.destroy();
+          _this2.destroy();
         });
       }
     },
@@ -158,12 +170,12 @@ var script = {
       } catch (e) {}
     },
     onMode: function onMode() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.instance.mode === 'source') {
         var editable = this.instance.editable();
         editable.attachListener(editable, 'input', function() {
-          _this2.onChange();
+          _this3.onChange();
         });
       }
     },
@@ -275,7 +287,7 @@ function normalizeComponent(
 var normalizeComponent_1 = normalizeComponent;
 
 /* script */
-const __vue_script__ = script;
+var __vue_script__ = script;
 
 /* template */
 var __vue_render__ = function() {
@@ -298,13 +310,13 @@ var __vue_render__ = function() {
 var __vue_staticRenderFns__ = [];
 
 /* style */
-const __vue_inject_styles__ = undefined;
+var __vue_inject_styles__ = undefined;
 /* scoped */
-const __vue_scope_id__ = undefined;
+var __vue_scope_id__ = undefined;
 /* module identifier */
-const __vue_module_identifier__ = undefined;
+var __vue_module_identifier__ = undefined;
 /* functional template */
-const __vue_is_functional_template__ = false;
+var __vue_is_functional_template__ = false;
 /* style inject */
 
 /* style inject SSR */

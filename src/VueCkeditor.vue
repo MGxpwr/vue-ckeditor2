@@ -68,7 +68,15 @@ export default {
     }
   },
   mounted() {
-    this.create();
+    let ckEditorScript = document.createElement('script');
+    ckEditorScript.setAttribute(
+      'src',
+      '//cdn.ckeditor.com/4.11.2/standard/ckeditor.js'
+    );
+    ckEditorScript.onload = () => {
+      this.create();
+    };
+    document.head.appendChild(ckEditorScript);
   },
   methods: {
     create() {
