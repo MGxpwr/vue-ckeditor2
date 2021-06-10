@@ -83,7 +83,7 @@ var script = {
     var ckEditorScript = document.createElement('script');
     ckEditorScript.setAttribute(
       'src',
-      '//cdn.ckeditor.com/4.11.2/standard/ckeditor.js'
+      '//cdn.ckeditor.com/4.16.1/standard/ckeditor.js'
     );
 
     ckEditorScript.onload = function() {
